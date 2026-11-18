@@ -1,0 +1,109 @@
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  namespace: varnish-ingress
+  name: varnish-ingress-controller
+rules:
+  - apiGroups:
+      - ""
+    resources:
+      - services
+      - endpoints
+    verbs:
+      - get
+      - list
+      - watch
+  - apiGroups:
+      - ""
+    resources:
+      - secrets
+    verbs:
+      - get
+      - list
+      - watch
+  - apiGroups:
+      - ""
+    resources:
+      - pods
+    verbs:
+      - list
+  - apiGroups:
+      - ""
+    resources:
+      - events
+    verbs:
+      - create
+      - patch
+  - apiGroups:
+      - extensions
+    resources:
+      - ingresses
+    verbs:
+      - list
+      - watch
+      - get
+  - apiGroups:
+      - "extensions"
+    resources:
+      - ingresses/status
+    verbs:
+      - update
+  - apiGroups:
+      - ingress.varnish-cache.org
+    resources:
+      - varnishconfigs
+      - backendconfigs
+    verbs:
+      - list
+      - watch
+      - get
+  - apiGroups:
+      - "ingress.varnish-cache.org"
+    resources:
+      - varnishconfigs/status
+      - backendconfigs/status
+    verbs:
+      - update
+---
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  namespace: varnish-ingress
+  name: varnish-ingress
+rules:
+  - apiGroups:
+      - ""
+    resources:
+      - secrets
+    verbs:
+      - get
+      - list
+      - watch
+---
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1beta1
+metadata:
+  namespace: varnish-ingress
+  name: viking-controller
+subjects:
+- kind: ServiceAccount
+  name: varnish-ingress-controller
+  namespace: varnish-ingress
+roleRef:
+  kind: Role
+  name: varnish-ingress-controller
+  apiGroup: rbac.authorization.k8s.io
+---
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1beta1
+metadata:
+  namespace: varnish-ingress
+  name: viking-service
+subjects:
+- kind: ServiceAccount
+  name: varnish-ingress
+  namespace: varnish-ingress
+roleRef:
+  kind: Role
+  name: varnish-ingress
+  apiGroup: rbac.authorization.k8s.io

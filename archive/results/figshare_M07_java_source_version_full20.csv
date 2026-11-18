@@ -1,0 +1,6 @@
+relative_path,pinned_commit,frozen_commit,authors_size,pinned_lines,frozen_lines,pinned_mismatching_fields,frozen_mismatching_fields,frozen_full20_match,baseline_recheck_matches_M07_all20,pinned_field_names,frozen_field_names
+Java-MicroProfile-on-Kubernetes/manifests/deploy-schedule.yaml,6fe54745db293b09cc98cdf2b7d303b02f1bdafd,a14547691542cfa5fffdc250e8e38db9cef9aa63,34,59,34,1,0,True,True,NO_DEFAULT_NSPACE,
+Java-MicroProfile-on-Kubernetes/manifests/deploy-session.yaml,6fe54745db293b09cc98cdf2b7d303b02f1bdafd,a14547691542cfa5fffdc250e8e38db9cef9aa63,34,53,34,1,0,True,True,NO_DEFAULT_NSPACE,
+Java-MicroProfile-on-Kubernetes/manifests/deploy-speaker.yaml,6fe54745db293b09cc98cdf2b7d303b02f1bdafd,a14547691542cfa5fffdc250e8e38db9cef9aa63,34,53,34,1,0,True,True,NO_DEFAULT_NSPACE,
+Java-MicroProfile-on-Kubernetes/manifests/deploy-vote.yaml,6fe54745db293b09cc98cdf2b7d303b02f1bdafd,a14547691542cfa5fffdc250e8e38db9cef9aa63,47,53,47,2,0,True,True,INSECURE_HTTP;NO_DEFAULT_NSPACE,
+Java-MicroProfile-on-Kubernetes/manifests/deploy-webapp.yaml,6fe54745db293b09cc98cdf2b7d303b02f1bdafd,a14547691542cfa5fffdc250e8e38db9cef9aa63,34,31,34,1,0,True,True,NO_DEFAULT_NSPACE,

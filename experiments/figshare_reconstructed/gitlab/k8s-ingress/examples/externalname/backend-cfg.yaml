@@ -1,0 +1,104 @@
+# Sample backend configurations
+
+apiVersion: "ingress.varnish-cache.org/v1alpha1"
+kind: BackendConfig
+metadata:
+  name: tea-svc-cfg
+spec:
+  # The services array is required and must have at least one element.
+  # Lists the names of Services that act as Backends for an Ingress in
+  # the same namespace, and are configured as backends for a Varnish
+  # Service that implements the Ingress. This config is to be applied
+  # to the Varnish backends corresponding to the Services named in the
+  # array.
+  services:
+    - tea-external-svc
+
+  # For requests routed to tea-external-svc:
+  # - The Host header is set to cafe.example.com if it is missing from
+  #   the request.
+  # - The connect timeout (for opening new connections to an Endpoint)
+  #   is one second.
+  # - The first byte timeout (until the first byte of a backend response
+  #   header is received) is two seconds.
+  # - The between bytes timeout (while a response is being received)
+  #   is one second.
+  # - No more than 200 connections to an Endpoint may be opened.
+  host-header: cafe.example.com
+  connect-timeout: 1s
+  first-byte-timeout: 2s
+  between-bytes-timeout: 1s
+  max-connections: 200
+  probe:
+    # Health probe requests for Endpoints of tea-external-svc:
+    # - Request URL path is /tea/healthz
+    # - Health probes are good when the response code is 200.
+    # - Five second timeout to receive responses.
+    # - Probes are sent every five seconds.
+    # - Two of three probes must be good for the Endpoint to count as
+    #   healthy.
+    # - At startup, one probe is implicitly assumed to be good.
+    url: /tea/healthz
+    expected-response: 200
+    timeout: 5s
+    interval: 5s
+    initial: 1
+    window: 3
+    threshold: 2
+  # Configuration specific to ExternalName Services:
+  # - dnsRetryDelay (VCL duration): delay until a DNS lookup is retried
+  #   after a lookup gets negative results. Default 30s
+  # - domainUsageTimeout (VCL duration): delay until an unused domain
+  #   and its backends are removed. Default 2h
+  # - firstLookupTimeout (VCL duration): delay until a lookup is failed
+  #   when a domain is requested the first time and there is no response
+  #   from the name service. Default 10s
+  # - resolverTimeout (VCL duration): timeout for DNS lookups
+  # - resolverIdleTimeout (VCL duration): timeout for idle DNS connections
+  #   (no outstanding responses and no pending queries)
+  # - maxDNSQueries (integer >= 0 and <= 65535): maximum number of
+  #   outstanding DNS queries. Queries above the limit are queued.
+  # - followDNSRedirects (boolean): whether DNS queries follow redirects
+  #   (CNAME and DNAME). Default true
+  dnsRetryDelay: 20s
+  domainUsageTimeout: 1h
+  firstLookupTimeout: 15s
+  resolverTimeout: 45s
+  resolverIdleTimeout: 5m
+  maxDNSQueries: 100
+  followDNSRedirects: true
+---
+apiVersion: "ingress.varnish-cache.org/v1alpha1"
+kind: BackendConfig
+metadata:
+  name: coffee-svc-cfg
+spec:
+  services:
+    - coffee-external-svc
+
+  # For requests routed to coffee-external-svc:
+  # - The first byte timeout is three seconds.
+  # - The between bytes timeout is two seconds.
+  first-byte-timeout: 3s
+  between-bytes-timeout: 2s
+  probe:
+    # Health probe for coffee-external-svc:
+    # - Requests are send as shown in the request array.
+    # - Timeout three seconds.
+    # - Three of four good probes are required for the Endpoint to
+    #   count as healthy.
+    request:
+    - GET /coffee/healthz HTTP/1.1
+    - "Host: cafe.example.com"
+    - "Connection: close"
+    timeout: 3s
+    interval: 3s
+    window: 4
+    threshold: 3
+  # Configuration specific to ExternalName Services
+  dnsRetryDelay: 25s
+  domainUsageTimeout: 3h
+  firstLookupTimeout: 20s
+  resolverTimeout: 1m
+  resolverIdleTimeout: 10m
+  maxDNSQueries: 200

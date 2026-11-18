@@ -1,0 +1,54 @@
+apiVersion: skaffold/v1beta11
+kind: Config
+build:
+  tagPolicy:
+    gitCommit: {}
+  artifacts:
+    - image: gcr.io/k8s-skaffold/sisyphus-build-env
+      docker:
+        dockerfile: Dockerfile
+        target: build-env
+
+    - image: gcr.io/k8s-skaffold/sisyphus-runner
+      docker:
+        dockerfile: Dockerfile
+        target: runner
+deploy:
+  helm:
+    releases:
+      - name: sisyphus-dev-runner
+        chartPath: files/charts/sisyphus
+        values:
+          image: gcr.io/k8s-skaffold/sisyphus-runner
+
+        recreatePods: true
+
+profiles:
+  - name: production
+    deploy:
+      helm:
+        releases:
+          - name: sisyphus-runner
+            chartPath: files/charts/sisyphus
+            values:
+              image: gcr.io/k8s-skaffold/sisyphus-runner
+            recreatePods: true
+            overrides:
+              runnerConf:
+                runnerName: sisyphus-production
+                runnerToken: ABCXYZ
+
+  - name: self-builder
+    deploy:
+      helm:
+        releases:
+          - name: sisyphus-self-builder
+            chartPath: files/charts/sisyphus
+            values:
+              image: gcr.io/k8s-skaffold/sisyphus-runner
+            recreatePods: true
+            overrides:
+              runnerConf:
+                runnerName: sisyphus-self-builder
+                runnerToken: ABCXYZ
+                namespace: sisyphus-test

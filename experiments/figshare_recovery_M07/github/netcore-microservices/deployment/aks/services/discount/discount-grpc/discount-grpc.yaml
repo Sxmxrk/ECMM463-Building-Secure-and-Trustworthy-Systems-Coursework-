@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: discount-grpc-deployment
+  labels:
+    app: discount-grpc
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: discount-grpc
+  template:
+    metadata:
+      labels:
+        app: discount-grpc
+    spec:
+      containers:
+        - name: discount-grpc
+          image:  netcoremicroservicesacr.azurecr.io/discountgrpc:v1
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: Development
+            - name: DatabaseSettings__ConnectionString
+              valueFrom:
+                  configMapKeyRef:
+                    name: discount-api-configmap
+                    key: connection_string
+      imagePullSecrets:
+        - name: acr-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: discount-grpc-service
+spec:
+  type: ClusterIP
+  selector:
+    app: discount-grpc
+  ports:
+    - protocol: TCP
+      port: 80

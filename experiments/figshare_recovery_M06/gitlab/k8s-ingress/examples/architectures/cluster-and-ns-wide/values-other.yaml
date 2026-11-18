@@ -1,0 +1,12 @@
+apps:
+  other:
+    image: nginxdemos/hello:plain-text
+    replicas: 2
+
+ingress:
+  name: other-ingress
+
+defaultApp:
+  app: other
+
+vikingAdmSvc: kube-system/varnish-ingress-admin

@@ -1,0 +1,32 @@
+FROM python:3.11-slim
+
+ARG TARGETARCH
+ARG YQ_VERSION=v4.35.2
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends curl ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN pip install --no-cache-dir \
+    pandas==2.0.2 \
+    numpy==1.24.3 \
+    "ruamel.yaml==0.17.21" \
+    sarif-om==1.0.4 \
+    jschema-to-python==1.2.3 \
+    typer==0.9.0 \
+    click==8.1.7
+
+RUN set -eux; \
+    case "${TARGETARCH:-amd64}" in \
+      amd64) YQ_ARCH=amd64 ;; \
+      arm64) YQ_ARCH=arm64 ;; \
+      *) echo "Unsupported TARGETARCH=${TARGETARCH}"; exit 1 ;; \
+    esac; \
+    curl -fsSL "https://github.com/mikefarah/yq/releases/download/${YQ_VERSION}/yq_linux_${YQ_ARCH}" -o /usr/local/bin/yq; \
+    chmod +x /usr/local/bin/yq; \
+    yq --version
+
+WORKDIR /app
+COPY constants.py graphtaint.py main.py parser.py scanner.py /app/
+
+ENTRYPOINT ["python", "/app/main.py"]

@@ -1,0 +1,191 @@
+vikingService:
+  varnish:
+    image:
+      repository: registry.gitlab.com/uplex/varnish/k8s-ingress/varnish-ingress/klarlack
+      tag: "master"
+      pullPolicy: IfNotPresent
+
+    extraArgs: []
+    extraEnvs: []
+
+    resources: {}
+
+    admSecret:
+      path: /run/varnish
+      file: _.secret
+
+  haproxy:
+    image:
+      repository: registry.gitlab.com/uplex/varnish/k8s-ingress/varnish-ingress/haproxy
+      tag: "master"
+      pullPolicy: IfNotPresent
+
+    extraArgs: []
+    extraEnvs: []
+
+    resources: {}
+
+  # Choose from Deployment or StatefulSet
+  kind: Deployment
+
+  # Only applicable if kind is StatefulSet
+  # If enabled this will mount a persistent volume per pod each under /run/varnish-home/persistent-storage.
+  # A storage backend needs to be configured to use this space.
+  persistentVolume:
+    enabled: false
+    storageClass: null
+    size: 1Gi
+
+  # Only applicable if kind is Deployment
+  # minReadySeconds to avoid killing pods before we are ready
+  minReadySeconds: 0
+
+  secrets:
+    admin: "21d0ac6c-83d5-11ea-8acc-1ff3820da75e"
+    dataplaneapi: "e24bb312-cb21-46d6-aaec-8ae676f06fea"
+
+  # Optionally customize the pod dnsConfig.
+  dnsConfig: {}
+  dnsPolicy: ClusterFirst
+
+  hostNetwork: false
+
+  ## Name of the ingress class to route through this controller
+  ##
+  ingressClass: viking
+
+  # labels to add to the pod container metadata
+  podLabels: {}
+  #  key: value
+
+  ## Security Context policies for controller pods
+  ## See https://kubernetes.io/docs/tasks/administer-cluster/sysctl-cluster/ for
+  ## notes on enabling and using sysctls
+  ##
+  podSecurityContext:
+    # ID 998 is group varnish in the varnish and haproxy containers.
+    # The varnish and haproxy users belong to this group.
+    fsGroup: 998
+
+  ## Annotations to be added to the controller deployment
+  ##
+  annotations: {}
+
+  # The update strategy to apply
+  # NB: Update strategy configuration differs between a Deployment and a StatefulSet
+  updateStrategy: {}
+  #  rollingUpdate:
+  #    maxUnavailable: 1
+  #  type: RollingUpdate
+
+  ## Node tolerations for server scheduling to nodes with taints
+  ## Ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/
+  ##
+  tolerations: []
+  #  - key: "key"
+  #    operator: "Equal|Exists"
+  #    value: "value"
+  #    effect: "NoSchedule|PreferNoSchedule|NoExecute(1.6 only)"
+
+  ## Affinity and anti-affinity
+  ## Ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity
+  ##
+  affinity: {}
+    # # An example of preferred pod anti-affinity, weight is in the range 1-100
+    # podAntiAffinity:
+    #   preferredDuringSchedulingIgnoredDuringExecution:
+    #   - weight: 100
+    #     podAffinityTerm:
+    #       labelSelector:
+    #         matchExpressions:
+    #         - key: app
+    #           operator: In
+    #           values:
+    #           - nginx-ingress
+    #       topologyKey: kubernetes.io/hostname
+
+    # # An example of required pod anti-affinity
+    # podAntiAffinity:
+    #   requiredDuringSchedulingIgnoredDuringExecution:
+    #   - labelSelector:
+    #       matchExpressions:
+    #       - key: app
+    #         operator: In
+    #         values:
+    #         - nginx-ingress
+    #     topologyKey: "kubernetes.io/hostname"
+
+  ## terminationGracePeriodSeconds
+  ##
+  terminationGracePeriodSeconds: 60
+
+  ## Node labels for controller pod assignment
+  ## Ref: https://kubernetes.io/docs/user-guide/node-selection/
+  ##
+  nodeSelector: {}
+
+  ## Annotations to be added to controller pods
+  ##
+  podAnnotations: {}
+
+  replicaCount: 2
+
+  minAvailable: 1
+
+  service:
+    annotations: {}
+    labels: {}
+
+    # If left unset or set to"-" a headless service will be defined.
+    clusterIP: ""
+
+    ## List of IP addresses at which the controller services are available
+    ## Ref: https://kubernetes.io/docs/user-guide/services/#external-ips
+    ##
+    externalIPs: []
+
+    loadBalancerIP: ""
+    loadBalancerSourceRanges: []
+
+    enableHTTP: true
+    enableHTTPS: true
+
+    ## Set external traffic policy to: "Local" to preserve source IP on
+    ## providers supporting it
+    ## Ref: https://kubernetes.io/docs/tutorials/services/source-ip/#source-ip-for-services-with-typeloadbalancer
+    externalTrafficPolicy: ""
+
+    # Must be either "None" or "ClientIP" if set. Kubernetes will default to "None".
+    # Ref: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies
+    sessionAffinity: ""
+
+    healthCheckNodePort: 0
+
+    ports:
+      http: 80
+      https: 443
+      httpTarget: http
+      varnishadm: 6081
+      ready: 8080
+      config: 8000
+
+    type: ClusterIP
+
+    # type: NodePort
+    nodePorts:
+      http: ""
+      https: ""
+
+## Rollback limit
+##
+revisionHistoryLimit: 10
+
+serviceAccount:
+  create: true
+  # Set name of service account.
+  # name:
+
+## Optional array of imagePullSecrets containing private registry credentials
+## Ref: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
+imagePullSecrets: []
+# - name: secretName

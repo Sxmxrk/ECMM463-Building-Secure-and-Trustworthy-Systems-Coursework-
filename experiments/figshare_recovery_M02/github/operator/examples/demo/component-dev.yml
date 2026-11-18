@@ -1,0 +1,15 @@
+apiVersion: halkyon.io/v1beta1
+kind: Component
+metadata:
+  name: fruit-client-sb
+  labels:
+    app: fruit-client-sb
+spec:
+  deploymentMode: dev
+  runtime: spring-boot
+  version: 1.5.16
+  port: 8080
+  expose: true
+  envs:
+    - name: SPRING_PROFILES_ACTIVE
+      value: openshift-catalog

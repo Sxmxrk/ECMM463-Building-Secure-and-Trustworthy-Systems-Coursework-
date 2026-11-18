@@ -1,0 +1,89 @@
+tosca_definitions_version: cloudify_dsl_1_3
+
+imports:
+  - http://www.getcloudify.org/spec/cloudify/4.3/types.yaml
+  - plugin.yaml
+
+inputs:
+
+  kubernetes_master_ip:
+    type: string
+    default: { get_secret: kubernetes_master_ip }
+
+  kubernetes_master_port:
+    type: string
+    default: { get_secret: kubernetes_master_port }
+
+  kubernetes_certificate_authority_data:
+    default: { get_secret: kubernetes_certificate_authority_data }
+
+  kubernetes-admin_client_certificate_data:
+    default: { get_secret: kubernetes-admin_client_certificate_data }
+
+  kubernetes-admin_client_key_data:
+    default: { get_secret: kubernetes-admin_client_key_data }
+
+  kubernetes_master_configuration:
+    default:
+      apiVersion: v1
+      kind: Config
+      preferences: {}
+      current-context: kubernetes-admin@kubernetes
+      clusters:
+      - name: kubernetes
+        cluster:
+          certificate-authority-data: { get_input: kubernetes_certificate_authority_data }
+          server: { concat: [ 'https://', { get_input: kubernetes_master_ip}, ':', { get_input: kubernetes_master_port } ] }
+      contexts:
+      - name: kubernetes-admin@kubernetes
+        context:
+          cluster: kubernetes
+          user: kubernetes-admin
+      users:
+      - name: kubernetes-admin
+        user:
+          client-certificate-data: { get_input: kubernetes-admin_client_certificate_data }
+          client-key-data:  { get_input: kubernetes-admin_client_key_data }
+
+  kubernetes_configuration_file_content:
+    description: >
+      File content of kubernetes master YAML configuration
+    default: { get_input: kubernetes_master_configuration }
+
+node_templates:
+  master:
+    type: cloudify.kubernetes.nodes.Master
+    properties:
+      configuration:
+        file_content: { get_input: kubernetes_configuration_file_content }
+
+  pod_a:
+    type: cloudify.kubernetes.resources.Pod
+    properties:
+      definition:
+        apiVersion: v1
+        kind: Pod
+        metadata:
+          name: nginx
+          namespace: default
+        spec:
+          containers:
+          - name: nginx
+            image: nginx
+            volumeMounts:
+            - name: someunxists
+              mountPath: /data
+            ports:
+            - containerPort: 80
+          volumes:
+          - name: someunxists
+            flexVolume:
+              driver: "cloudify/mount"
+              fsType: "ext4"
+              options:
+                volumeID: "vol1"
+                size: "1000m"
+                volumegroup: "kube_vg"
+    relationships:
+      - type: cloudify.kubernetes.relationships.managed_by_master
+        target: master

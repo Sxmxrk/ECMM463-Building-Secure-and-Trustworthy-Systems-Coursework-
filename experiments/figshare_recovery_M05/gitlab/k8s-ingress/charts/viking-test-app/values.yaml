@@ -1,0 +1,42 @@
+# Map of Ingress backend apps, keys are app names.
+apps: {}
+  # example:
+    # image: uplex/http-echo
+
+    # replicas: 1
+
+    ## containerPort for the pod template ports spec
+    ## servicePort for Service spec.ports.port
+    ## targetPort for Service spec.ports.targetPort
+
+    # containerPort: 80
+    # servicePort: 80
+    # targetPort: 80
+
+ingress:
+  # Must match the Ingress class observed by the controller.
+  class: "varnish"
+
+  name: viking-ingress
+
+  # Ingress rules
+  rules: []
+  # - host: example.com
+    # paths:
+    # - path: /
+    #   app: example
+    #   servicePort: 80
+
+  tlsSecrets: []
+  # - name: tls-secret
+  #   crt: <certificate>
+  #   key: <key>
+
+# The admin Service for the viking workload to implement the Ingress
+# and VarnishConfig. Required for VarnishConfig. If empty, then
+# default rules apply for Ingress -- typically the one such Service in
+# the same namespace.
+vikingAdmSvc: ""
+
+# ACL elements for VarnishConfig
+acls: []

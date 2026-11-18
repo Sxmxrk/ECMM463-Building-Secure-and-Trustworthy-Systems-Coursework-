@@ -1,0 +1,12 @@
+vikingController:
+
+  ## Name of the ingress class to route through this controller
+  ##
+  ingressClass: varnish
+
+  ## Only listen for resources in this namespace (default all)
+  namespace: varnish-ingress
+
+  # labels to add to the pod container metadata
+  podLabels:
+    app: varnish-ingress-controller

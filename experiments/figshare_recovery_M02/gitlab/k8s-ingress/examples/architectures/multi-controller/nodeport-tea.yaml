@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: varnish-tea
+  namespace: cafe
+  labels:
+    app: varnish-ingress
+  annotations:
+    service.alpha.kubernetes.io/tolerate-unready-endpoints: "true"
+spec:
+  type: NodePort 
+  ports:
+  - port: 80
+    targetPort: 80
+    protocol: TCP
+    name: http
+  - port: 443
+    targetPort: 443
+    protocol: TCP
+    name: tls
+  selector:
+    app: varnish-ingress
+    ingress: tea
+  publishNotReadyAddresses: true

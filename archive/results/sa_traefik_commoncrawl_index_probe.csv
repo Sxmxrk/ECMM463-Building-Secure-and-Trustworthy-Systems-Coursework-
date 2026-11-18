@@ -1,0 +1,5 @@
+index,target,status,http_status,capture_timestamp,captured_url,mime,warc_filename,warc_offset,warc_length,detail
+CC-MAIN-2018-30,https://raw.githubusercontent.com/softasap/sa-traefik/master/defaults/pod-privileged.yaml,INDEX_HTTP_ERROR,504,,,,,,,HTTP 504; Retry-After=
+CC-MAIN-2018-30,https://github.com/softasap/sa-traefik/blob/master/defaults/pod-privileged.yaml,INDEX_HTTP_ERROR,504,,,,,,,HTTP 504; Retry-After=
+CC-MAIN-2019-30,https://raw.githubusercontent.com/softasap/sa-traefik/master/defaults/pod-privileged.yaml,INDEX_HTTP_ERROR,504,,,,,,,HTTP 504; Retry-After=
+CC-MAIN-2019-30,https://github.com/softasap/sa-traefik/blob/master/defaults/pod-privileged.yaml,INDEX_HTTP_ERROR,504,,,,,,,HTTP 504; Retry-After=

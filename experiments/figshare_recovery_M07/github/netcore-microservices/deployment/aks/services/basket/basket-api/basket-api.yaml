@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: basket-api-deployment
+  labels:
+    app: basket-api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: basket-api
+  template:
+    metadata:
+      labels:
+        app: basket-api
+    spec:
+      containers:
+        - name: basketapi
+          image:  netcoremicroservicesacr.azurecr.io/basketapi:v1
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: Development
+            - name: CacheSettings__ConnectionString
+              valueFrom:
+                  configMapKeyRef:
+                    name: basket-api-configmap
+                    key: connection_string
+
+            - name: GrpcSettings__DiscountUrl
+              valueFrom:
+                  configMapKeyRef:
+                    name: basket-api-configmap
+                    key: discount_url
+
+      imagePullSecrets:
+        - name: acr-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: basket-api-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: basket-api
+  ports:
+    - protocol: TCP
+      port: 80

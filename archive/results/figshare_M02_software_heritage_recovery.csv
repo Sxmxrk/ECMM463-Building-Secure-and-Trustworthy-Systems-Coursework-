@@ -1,0 +1,4 @@
+source,relative_path,commit,original_url,status,bytes,sha256,reason
+gitlab,OpenStack-on-Kubernetes/src-ocata/heat.yaml,875b22a4d994b52dc785859f82b0798c77e4efcd,https://gitlab.com/call518/OpenStack-on-Kubernetes/blob/875b22a4d994b52dc785859f82b0798c77e4efcd/src-ocata/heat.yaml,ERROR,0,,HTTPError: HTTP Error 406: Not Acceptable
+gitlab,OpenStack-on-Kubernetes/src-ocata/horizon.yaml,875b22a4d994b52dc785859f82b0798c77e4efcd,https://gitlab.com/call518/OpenStack-on-Kubernetes/blob/875b22a4d994b52dc785859f82b0798c77e4efcd/src-ocata/horizon.yaml,ERROR,0,,HTTPError: HTTP Error 406: Not Acceptable
+gitlab,OpenStack-on-Kubernetes/src-ocata/keystone.yaml,875b22a4d994b52dc785859f82b0798c77e4efcd,https://gitlab.com/call518/OpenStack-on-Kubernetes/blob/875b22a4d994b52dc785859f82b0798c77e4efcd/src-ocata/keystone.yaml,ERROR,0,,HTTPError: HTTP Error 406: Not Acceptable

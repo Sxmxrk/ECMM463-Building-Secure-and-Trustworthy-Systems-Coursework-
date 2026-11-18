@@ -1,0 +1,37 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: cafe-ingress-varnish
+  annotations:
+    kubernetes.io/ingress.class: "varnish"
+spec:
+  tls:
+  - hosts:
+    - cafe.example.com
+    secretName: cafe-tls-secret
+  - hosts:
+    - bar.example.com
+    secretName: bar-tls-secret
+  rules:
+  - host: cafe.example.com
+    http:
+      paths:
+      - path: /tea
+        backend:
+          serviceName: tea-svc
+          servicePort: 80
+      - path: /coffee
+        backend:
+          serviceName: coffee-svc
+          servicePort: 80
+  - host: bar.example.com
+    http:
+      paths:
+      - path: /vodka
+        backend:
+          serviceName: vodka-svc
+          servicePort: 80
+      - path: /whiskey
+        backend:
+          serviceName: whiskey-svc
+          servicePort: 80

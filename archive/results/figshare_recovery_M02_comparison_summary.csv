@@ -1,0 +1,12 @@
+category,comparable_manifests,authors_expected,our_reproduction,difference,absolute_difference
+Absent Resource Limit,1715,70,70,0,0
+Absent securityContext,1715,81,81,0,0
+Activation of hostIPC,1715,1,1,0,0
+Activation of hostNetwork,1715,12,12,0,0
+Activation of hostPID,1715,5,5,0,0
+Capability Misuse,1715,6,6,0,0
+Docker Socket Mounting,1715,2,2,0,0
+Escalated Privileges for Child Container Processes,1715,3,3,0,0
+Hard-coded Secret,1715,156,121,-35,35
+Insecure HTTP,1715,494,528,34,34
+Privileged securityContext,1715,1,1,0,0

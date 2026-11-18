@@ -1,0 +1,10 @@
+vikingController:
+
+  ## Name of the ingress class to route through this controller
+  ##
+  ingressClass: varnish-coffee
+
+  # labels to add to the pod container metadata
+  podLabels:
+    app: varnish-ingress-controller
+    example: coffee

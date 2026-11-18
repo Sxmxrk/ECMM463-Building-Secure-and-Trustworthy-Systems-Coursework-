@@ -1,0 +1,15 @@
+---
+apiVersion: projectcontour.io/v1
+kind: HTTPProxy
+metadata:
+  name: harbor
+  namespace: infra
+  labels:
+    service: harbor
+    role: proxy
+spec:
+  routes:
+    - services:
+        - name: registry-harbor-portal
+          port: 80
+      permitInsecure: true

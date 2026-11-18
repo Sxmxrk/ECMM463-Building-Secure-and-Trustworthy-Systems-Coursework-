@@ -1,0 +1,42 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: debugger-service
+  labels:
+    app: kafka-cqrs
+spec:
+  selector:
+    app: kafka-cqrs
+    service: debugger-service
+  ports:
+  - name: http-service-port
+    protocol: TCP
+    port: 9090
+    targetPort: 9090
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kafka-cqrs-debugger-service
+  labels:
+    app: kafka-cqrs
+    service: debugger-service
+spec:
+  selector:
+    matchLabels:
+      app: kafka-cqrs
+      service: debugger-service
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: kafka-cqrs
+        service: debugger-service
+    spec:
+      containers:
+      - name: debugger-service
+        image: library/busybox:1.29.2
+        ports:
+          - containerPort: 9090
+        command: ["/bin/sh", "-c"]
+        args: ["echo 'Hello World!' > /var/www/index.html && httpd -f -v -p 9090 -h /var/www"]

@@ -1,0 +1,30 @@
+source,relative_path,secret_yaml_key,detection_group,generated_helm_reference,times_generated_by_scanner,literal_template_occurrences,scanner_count_contribution,matched_templates_json
+github,twitter-go/helm/charts/rabbitmq/values-production.yaml,username,username,<REDACTED_NONKEY_HIERARCHY:8a86a10fd1b8>,1,0,0,{}
+github,twitter-go/helm/charts/rabbitmq/values-production.yaml,username,username,.Values.rabbitmq.username,1,4,4,"{""templates/configuration.yaml"": 1, ""templates/statefulset.yaml"": 3}"
+github,twitter-go/helm/charts/rabbitmq/values-production.yaml,username,username,.Values.rabbitmq.username.username,1,0,0,{}
+github,twitter-go/helm/charts/rabbitmq/values-production.yaml,username,username,<REDACTED_NONKEY_HIERARCHY:781308982db1>,1,0,0,{}
+github,twitter-go/helm/charts/rabbitmq/values-production.yaml,username,username,<REDACTED_NONKEY_HIERARCHY:52248f32a8e3>,1,0,0,{}
+github,twitter-go/helm/charts/rabbitmq/values.yaml,username,username,<REDACTED_NONKEY_HIERARCHY:8a86a10fd1b8>,1,0,0,{}
+github,twitter-go/helm/charts/rabbitmq/values.yaml,username,username,.Values.rabbitmq.username,1,4,4,"{""templates/configuration.yaml"": 1, ""templates/statefulset.yaml"": 3}"
+github,twitter-go/helm/charts/rabbitmq/values.yaml,username,username,.Values.rabbitmq.username.username,1,0,0,{}
+github,twitter-go/helm/charts/rabbitmq/values.yaml,username,username,<REDACTED_NONKEY_HIERARCHY:781308982db1>,1,0,0,{}
+github,twitter-go/helm/charts/rabbitmq/values.yaml,username,username,<REDACTED_NONKEY_HIERARCHY:52248f32a8e3>,1,0,0,{}
+gitlab,skampi/charts/skampi/charts/archiver/values.yaml,password,password,.Values.db.password,1,0,0,{}
+gitlab,skampi/charts/skampi/charts/archiver/values.yaml,password,password,<REDACTED_NONKEY_HIERARCHY:064ce32757b9>,1,0,0,{}
+gitlab,skampi/charts/skampi/charts/archiver/values.yaml,password,password,.Values.db.user.password,1,0,0,{}
+gitlab,skampi/charts/skampi/charts/archiver/values.yaml,password,password,.Values.hdbppdb.db.password,1,1,1,"{""templates/archiverdb.yaml"": 1}"
+gitlab,skampi/charts/skampi/charts/archiver/values.yaml,password,password,.Values.hdbppdb.password,1,0,0,{}
+gitlab,skampi/charts/skampi/charts/archiver/values.yaml,password,password,<REDACTED_NONKEY_HIERARCHY:4a4bd2363041>,1,0,0,{}
+gitlab,skampi/charts/skampi/charts/archiver/values.yaml,password,password,.Values.hdbppdb.user.password,1,0,0,{}
+gitlab,skampi/charts/skampi/charts/archiver/values.yaml,password,password,<REDACTED_NONKEY_HIERARCHY:bcef36f84d72>,1,0,0,{}
+gitlab,skampi/charts/skampi/charts/archiver/values.yaml,password,password,.Values.user.password,1,0,0,{}
+gitlab,skampi/charts/skampi/charts/archiver/values.yaml,password,password,<REDACTED_NONKEY_HIERARCHY:f5f21782f7e5>,1,0,0,{}
+gitlab,skampi/charts/skampi/charts/archiver/values.yaml,user,username,<REDACTED_NONKEY_HIERARCHY:0cc7cc9b09ef>,1,0,0,{}
+gitlab,skampi/charts/skampi/charts/archiver/values.yaml,user,username,.Values.db.user,1,0,0,{}
+gitlab,skampi/charts/skampi/charts/archiver/values.yaml,user,username,.Values.db.user.user,1,0,0,{}
+gitlab,skampi/charts/skampi/charts/archiver/values.yaml,user,username,.Values.hdbppdb.db.user,1,1,1,"{""templates/archiverdb.yaml"": 1}"
+gitlab,skampi/charts/skampi/charts/archiver/values.yaml,user,username,<REDACTED_NONKEY_HIERARCHY:89bc832c5f03>,1,0,0,{}
+gitlab,skampi/charts/skampi/charts/archiver/values.yaml,user,username,.Values.hdbppdb.user,1,0,0,{}
+gitlab,skampi/charts/skampi/charts/archiver/values.yaml,user,username,.Values.hdbppdb.user.user,1,0,0,{}
+gitlab,skampi/charts/skampi/charts/archiver/values.yaml,user,username,<REDACTED_NONKEY_HIERARCHY:fe862dd0927c>,1,0,0,{}
+gitlab,skampi/charts/skampi/charts/archiver/values.yaml,user,username,<REDACTED_NONKEY_HIERARCHY:f291a0bbe136>,1,0,0,{}

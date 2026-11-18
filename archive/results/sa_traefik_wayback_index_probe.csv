@@ -1,0 +1,7 @@
+source,status,http_status,timestamp,archived_url,detail
+https://raw.githubusercontent.com/softasap/sa-traefik/master/defaults/pod-privileged.yaml,NO_CAPTURE_RETURNED,200,,,Not proof a historical file never existed
+https://github.com/softasap/sa-traefik/blob/master/defaults/pod-privileged.yaml,NO_CAPTURE_RETURNED,200,,,Not proof a historical file never existed
+https://github.com/softasap/sa-traefik/raw/master/defaults/pod-privileged.yaml,NO_CAPTURE_RETURNED,200,,,Not proof a historical file never existed
+https://raw.githubusercontent.com/github-clonner/sa-traefik/master/defaults/pod-privileged.yaml,NO_CAPTURE_RETURNED,200,,,Not proof a historical file never existed
+https://github.com/github-clonner/sa-traefik/blob/master/defaults/pod-privileged.yaml,NO_CAPTURE_RETURNED,200,,,Not proof a historical file never existed
+https://github.com/softasap/sa-traefik/tree/master/defaults,NO_CAPTURE_RETURNED,200,,,Not proof a historical file never existed

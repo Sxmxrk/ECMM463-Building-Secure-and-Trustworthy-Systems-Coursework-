@@ -1,0 +1,18 @@
+nameOverride: pod-template-examples
+fullnameOverride: pod-template-examples
+vikingService:
+  varnish:
+    extraEnvs:
+    - name: PROTO
+      value: PROXY
+
+  ## Name of the ingress class to route through this controller
+  ##
+  ingressClass: varnish
+
+  replicaCount: 1
+
+  # labels to add to the pod container metadata
+  podLabels:
+    app: varnish-ingress
+    example: proxy

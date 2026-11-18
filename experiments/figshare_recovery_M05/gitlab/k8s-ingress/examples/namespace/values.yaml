@@ -1,0 +1,17 @@
+apps:
+  coffee:
+    image: nginxdemos/hello:plain-text
+    replicas: 2
+  tea:
+    image: nginxdemos/hello:plain-text
+    replicas: 3
+
+ingress:
+  name: cafe-ingress
+  rules:
+  - host: cafe.example.com
+    paths:
+    - path: /tea
+      app: tea
+    - path: /coffee
+      app: coffee

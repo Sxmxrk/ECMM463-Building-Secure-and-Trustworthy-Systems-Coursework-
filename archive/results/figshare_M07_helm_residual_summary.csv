@@ -1,0 +1,4 @@
+source,relative_path,authors_taints,paper_era_scanner_taints,remaining_difference,reconstructed_taints_from_literal_refs,candidate_secret_key_names,candidate_helm_ref_total_including_duplicates,candidate_helm_ref_unique,unique_helm_refs_with_matches,yaml_templates_scanned,other_reference_candidates_not_counted,taint_match_template_paths
+github,twitter-go/helm/charts/rabbitmq/values-production.yaml,5,4,1,4,username,5,5,1,10,[],"[""templates/configuration.yaml"", ""templates/statefulset.yaml"", ""templates/statefulset.yaml"", ""templates/statefulset.yaml""]"
+github,twitter-go/helm/charts/rabbitmq/values.yaml,9,4,5,4,username,5,5,1,10,[],"[""templates/configuration.yaml"", ""templates/statefulset.yaml"", ""templates/statefulset.yaml"", ""templates/statefulset.yaml""]"
+gitlab,skampi/charts/skampi/charts/archiver/values.yaml,4,2,2,2,password; user,19,19,2,5,[],"[""templates/archiverdb.yaml"", ""templates/archiverdb.yaml""]"

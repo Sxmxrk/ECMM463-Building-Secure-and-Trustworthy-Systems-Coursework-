@@ -1,0 +1,22 @@
+nameOverride: pod-template-examples
+fullnameOverride: pod-template-examples
+vikingService:
+  varnish:
+    extraArgs:
+      - -s
+      - malloc,256m
+      - -t
+      - "900"
+      - -p
+      - workspace_client=256k
+
+  ## Name of the ingress class to route through this controller
+  ##
+  ingressClass: varnish
+
+  replicaCount: 1
+
+  # labels to add to the pod container metadata
+  podLabels:
+    app: varnish-ingress
+    example: cli-args

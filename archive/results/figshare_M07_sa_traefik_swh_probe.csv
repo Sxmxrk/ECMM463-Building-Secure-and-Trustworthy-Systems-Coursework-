@@ -1,0 +1,10 @@
+origin,snapshot,visit_date,status,branch,revision,blob,lines,path
+https://github.com/softasap/sa-traefik,44736c74c4a6c34e24be0534cc1e6c86535ddb99,2022-12-10T09:46:59.991000+00:00,NOT_PRESENT,,,,,
+https://github.com/softasap/sa-traefik,3dd57769d6a398f1fbf9f573cc3d30171b1ab73a,2021-09-26T18:16:56.757000+00:00,NOT_PRESENT,,,,,
+https://github.com/softasap/sa-traefik,68e8c3a49b30b51c5a93274970924cd4761f934d,2021-07-05T22:30:56.338000+00:00,NOT_PRESENT,,,,,
+https://github.com/softasap/sa-traefik,91eb1a7a44daf66b7ecf82af7f26fe355198febd,2021-01-21T13:25:18.952000+00:00,NOT_PRESENT,,,,,
+https://github.com/softasap/sa-traefik,e10ee6d7aed31bfc7abcb930d0d9a46dd069cd59,2020-02-29T10:52:43.893000+00:00,NOT_PRESENT,,,,,
+https://github.com/softasap/sa-traefik,dd5874afa24b8a27e35145d8333b6082a7a31bab,2019-12-14T09:01:56.329000+00:00,API_ERROR,,,,,
+https://github.com/softasap/sa-traefik,69cccf96dfb2b6fc7508e1bc9270fb74eb4d89b0,2019-06-29T07:49:02.791000+00:00,API_ERROR,,,,,
+https://github.com/softasap/sa-traefik,4cceef649571b5a62a6d0093ee31f2d32543320d,2019-03-12T02:16:18.825000+00:00,API_ERROR,,,,,
+https://github.com/github-clonner/sa-traefik,3fcc89e4da1b92ecf5f79471dcb2ab9db57e160b,2024-06-25T05:06:36.400000+00:00,API_ERROR,,,,,

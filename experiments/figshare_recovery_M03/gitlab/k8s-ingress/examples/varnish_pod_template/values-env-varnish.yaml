@@ -1,0 +1,47 @@
+nameOverride: pod-template-examples
+fullnameOverride: pod-template-examples
+vikingService:
+  varnish:
+    extraEnvs:
+    - name: PROTO
+      value: PROXY
+    - name: HTTP_PORT
+      value: "81"
+    - name: READY_PORT
+      value: "8000"
+    - name: ADMIN_PORT
+      value: "7000"
+    - name: CONFIG_PORT
+      value: "9000"
+    - name: SECRET_PATH
+      value: /var/secret
+    - name: SECRET_FILE
+      value: adm.secret
+
+    admSecret:
+      path: /var/secret
+      file: adm.secret
+
+  service:
+    ports:
+      http: 81
+      httpTarget: 81
+      varnishadm: 7000
+      ready: 8000
+      config: 9000
+
+  haproxy:
+    extraEnvs:
+    - name: VARNISH_READY_PORT
+      value: "8000"
+
+  ## Name of the ingress class to route through this controller
+  ##
+  ingressClass: varnish
+
+  replicaCount: 1
+
+  # labels to add to the pod container metadata
+  podLabels:
+    app: varnish-ingress
+    example: env

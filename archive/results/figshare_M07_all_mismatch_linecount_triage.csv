@@ -1,0 +1,47 @@
+source,relative_path,authors_size_options,authors_size_unique,original_m07_lines,same_line_count,line_difference,original_mismatched_fields,original_field_differences
+github,GameOn-Java-Microservices-on-Kubernetes/core/auth.yaml,210,True,114,False,-96,INSECURE_HTTP,INSECURE_HTTP:0->5
+github,GameOn-Java-Microservices-on-Kubernetes/core/map.yaml,210,True,114,False,-96,INSECURE_HTTP,INSECURE_HTTP:0->5
+github,GameOn-Java-Microservices-on-Kubernetes/core/mediator.yaml,210,True,114,False,-96,INSECURE_HTTP,INSECURE_HTTP:0->5
+github,GameOn-Java-Microservices-on-Kubernetes/core/player.yaml,217,True,121,False,-96,INSECURE_HTTP,INSECURE_HTTP:0->5
+github,GameOn-Java-Microservices-on-Kubernetes/core/proxy.yaml,217,True,121,False,-96,INSECURE_HTTP,INSECURE_HTTP:0->5
+github,GameOn-Java-Microservices-on-Kubernetes/core/room.yaml,210,True,114,False,-96,INSECURE_HTTP,INSECURE_HTTP:0->5
+github,GameOn-Java-Microservices-on-Kubernetes/core/webapp.yaml,200,True,104,False,-96,INSECURE_HTTP,INSECURE_HTTP:0->5
+github,Java-MicroProfile-on-Kubernetes/manifests/deploy-schedule.yaml,34,True,59,False,25,NO_DEFAULT_NSPACE,NO_DEFAULT_NSPACE:0->1
+github,Java-MicroProfile-on-Kubernetes/manifests/deploy-session.yaml,34,True,53,False,19,NO_DEFAULT_NSPACE,NO_DEFAULT_NSPACE:0->1
+github,Java-MicroProfile-on-Kubernetes/manifests/deploy-speaker.yaml,34,True,53,False,19,NO_DEFAULT_NSPACE,NO_DEFAULT_NSPACE:0->1
+github,Java-MicroProfile-on-Kubernetes/manifests/deploy-vote.yaml,47,True,53,False,6,INSECURE_HTTP; NO_DEFAULT_NSPACE,INSECURE_HTTP:1->0; NO_DEFAULT_NSPACE:0->1
+github,Java-MicroProfile-on-Kubernetes/manifests/deploy-webapp.yaml,34,True,31,False,-3,NO_DEFAULT_NSPACE,NO_DEFAULT_NSPACE:0->1
+github,Microservices-Nodejs-React/GitTix/infra/k8s/tickets-depl.yaml,50,True,35,False,-15,INSECURE_HTTP,INSECURE_HTTP:1->0
+github,RSO/kubernetes/payment/payment-deployment.yaml,29,True,26,False,-3,INSECURE_HTTP,INSECURE_HTTP:0->1
+github,emissary/docs/yaml/ambassador-injector.yaml,104,True,90,False,-14,INSECURE_HTTP,INSECURE_HTTP:1->0
+github,emissary/docs/yaml/ambassador/ambassador-service.yaml,24,True,12,False,-12,INSECURE_HTTP,INSECURE_HTTP:1->0
+github,emissary/docs/yaml/consul/ambassador-consul-connector-old.yaml,87,True,78,False,-9,INSECURE_HTTP,INSECURE_HTTP:1->0
+github,emissary/docs/yaml/consul/ambassador-consul-connector.yaml,108,True,91,False,-17,INSECURE_HTTP; NO_DEFAULT_NSPACE,INSECURE_HTTP:1->0; NO_DEFAULT_NSPACE:0->1
+github,emissary/manifests/emissary/ambassador.yaml,456,True,375,False,-81,INSECURE_HTTP,INSECURE_HTTP:3->2
+github,emissary/manifests/emissary/emissary-ingress.yaml,456,True,375,False,-81,INSECURE_HTTP; NO_DEFAULT_NSPACE,INSECURE_HTTP:3->2; NO_DEFAULT_NSPACE:0->1
+github,kubernetes-native-testbed/manifests/cart/db.yaml,594,True,1046,False,452,WITHIN_MANIFEST_SECRET; INSECURE_HTTP,WITHIN_MANIFEST_SECRET:0->2; INSECURE_HTTP:1->4
+github,kubernetes-native-testbed/manifests/delivery-status/db.yaml,148,True,63,False,-85,WITHIN_MANIFEST_SECRET,WITHIN_MANIFEST_SECRET:2->0
+github,kubernetes-native-testbed/manifests/infra/harbor/harbor.yaml,1422,True,1691,False,269,INSECURE_HTTP,INSECURE_HTTP:15->16
+github,kubernetes-native-testbed/manifests/infra/prometheus-operator/instance.yaml,36596,True,36530,False,-66,INSECURE_HTTP,INSECURE_HTTP:5->4
+github,kubernetes-native-testbed/manifests/order/app.yaml,117,True,54,False,-63,WITHIN_MANIFEST_SECRET; NO_ROLLING_UPDATE,WITHIN_MANIFEST_SECRET:1->0; NO_ROLLING_UPDATE:0->1
+github,kubernetes-native-testbed/manifests/order/db.yaml,683,True,1046,False,363,WITHIN_MANIFEST_SECRET; INSECURE_HTTP,WITHIN_MANIFEST_SECRET:1->2; INSECURE_HTTP:1->4
+github,kubernetes-native-testbed/manifests/payment-info/db.yaml,55,True,55,True,0,WITHIN_MANIFEST_SECRET; INSECURE_HTTP,WITHIN_MANIFEST_SECRET:0->1; INSECURE_HTTP:1->0
+github,kubernetes-native-testbed/manifests/point/db.yaml,143,True,54,False,-89,WITHIN_MANIFEST_SECRET,WITHIN_MANIFEST_SECRET:2->0
+github,kubernetes-native-testbed/manifests/rate/kvs.yaml,62,True,44,False,-18,WITHIN_MANIFEST_SECRET,WITHIN_MANIFEST_SECRET:1->0
+github,microservices-deploy/scripts_minikube/deploy.yml,150,True,173,False,23,INSECURE_HTTP,INSECURE_HTTP:1->0
+github,microservices-dotnetcore-docker-sf-k8s/deploy/k8s/local/invoice/invoice-deployment.yaml,43,True,38,False,-5,INSECURE_HTTP,INSECURE_HTTP:0->1
+github,netcore-microservices/deployment/aks/examples/ingress-controller/test-ingress.yaml,47,True,21,False,-26,INSECURE_HTTP,INSECURE_HTTP:1->0
+github,podinfo/charts/podinfo/values.yaml,140,True,53,False,-87,INSECURE_HTTP,INSECURE_HTTP:0->1
+github,spring-cloud-dataflow/src/kubernetes/kafka/kafka-deployment.yaml,36,True,37,False,1,NO_ROLLING_UPDATE,NO_ROLLING_UPDATE:0->1
+github,spring-cloud-dataflow/src/kubernetes/mysql/mysql-secrets.yaml,9,True,8,False,-1,WITHIN_MANIFEST_SECRET,WITHIN_MANIFEST_SECRET:2->1
+github,spring-cloud-dataflow/src/kubernetes/server/server-config.yaml,37,True,44,False,7,INSECURE_HTTP,INSECURE_HTTP:0->1
+github,spring-cloud-dataflow/src/kubernetes/server/server-deployment.yaml,90,True,67,False,-23,INSECURE_HTTP,INSECURE_HTTP:2->3
+github,spring-cloud-dataflow/src/templates/kubernetes/kafka/kafka-deployment.yaml,36,True,40,False,4,NO_ROLLING_UPDATE,NO_ROLLING_UPDATE:0->1
+github,spring-cloud-dataflow/src/templates/kubernetes/mysql/mysql-secrets.yaml,9,True,8,False,-1,WITHIN_MANIFEST_SECRET,WITHIN_MANIFEST_SECRET:2->1
+github,tfm_swcraftsmanship/charts/tfm-almacar/charts/database/values.yaml,12,True,9,False,-3,VALID_TAINT_SECRET,VALID_TAINT_SECRET:2->0
+github,twitter-go/helm/charts/rabbitmq/values-production.yaml,350,True,350,True,0,VALID_TAINT_SECRET,VALID_TAINT_SECRET:5->0
+github,twitter-go/helm/charts/rabbitmq/values.yaml,346,True,346,True,0,VALID_TAINT_SECRET,VALID_TAINT_SECRET:9->0
+gitlab,skampi/charts/skampi/charts/archiver/values.yaml,67,True,67,True,0,VALID_TAINT_SECRET,VALID_TAINT_SECRET:4->0
+gitlab,skampi/charts/skampi/charts/dsh-lmc-prototype/values.yaml,36,True,36,True,0,VALID_TAINT_SECRET,VALID_TAINT_SECRET:4->0
+gitlab,skampi/charts/skampi/charts/tango-base/values.yaml,268,True,268,True,0,VALID_TAINT_SECRET,VALID_TAINT_SECRET:8->0
+gitlab,stackgres/stackgres-k8s/install/helm/stackgres-operator/values.yaml,104,True,104,True,0,VALID_TAINT_SECRET,VALID_TAINT_SECRET:11->0

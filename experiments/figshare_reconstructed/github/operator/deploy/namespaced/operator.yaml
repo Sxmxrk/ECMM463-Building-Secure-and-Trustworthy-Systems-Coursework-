@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: halkyon-operator
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: halkyon-operator
+  template:
+    metadata:
+      labels:
+        name: halkyon-operator
+    spec:
+      serviceAccountName: halkyon-operator
+      containers:
+        - name: halkyon-operator
+          image: quay.io/halkyonio/operator:latest
+          ports:
+            - containerPort: 60000
+              name: metrics
+          volumeMounts:
+            - mountPath: plugins
+              name: halkyon-plugins
+          command:
+            - halkyon-operator
+          args:
+            - --zap-encoder
+            - $(ZAP_ENCODER)
+          imagePullPolicy: Always
+          env:
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: OPERATOR_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: halkyon-config
+                  key: OPERATOR_NAME
+            - name: ZAP_ENCODER
+              valueFrom:
+                configMapKeyRef:
+                  name: halkyon-config
+                  key: ZAP_ENCODER
+            - name: HALKYON_PLUGINS
+              valueFrom:
+                configMapKeyRef:
+                  name: halkyon-config
+                  key: HALKYON_PLUGINS
+            # - name: BASE_S2I_IMAGE
+            #   value: "quay.io/halkyonio/spring-boot-maven-s2i"
+            # - name: REGISTRY_ADDRESS
+            #   value: "docker-registry.default.svc:5000"
+      volumes:
+        - emptyDir: {}
+          name: halkyon-plugins

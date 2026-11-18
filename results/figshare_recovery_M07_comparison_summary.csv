@@ -1,0 +1,12 @@
+category,comparable_manifests,authors_expected,our_reproduction,difference,absolute_difference
+Absent Resource Limit,2031,79,79,0,0
+Absent securityContext,2031,83,83,0,0
+Activation of hostIPC,2031,1,1,0,0
+Activation of hostNetwork,2031,14,14,0,0
+Activation of hostPID,2031,5,5,0,0
+Capability Misuse,2031,20,20,0,0
+Docker Socket Mounting,2031,4,4,0,0
+Escalated Privileges for Child Container Processes,2031,3,3,0,0
+Hard-coded Secret,2031,219,172,-47,47
+Insecure HTTP,2031,612,647,35,35
+Privileged securityContext,2031,9,9,0,0

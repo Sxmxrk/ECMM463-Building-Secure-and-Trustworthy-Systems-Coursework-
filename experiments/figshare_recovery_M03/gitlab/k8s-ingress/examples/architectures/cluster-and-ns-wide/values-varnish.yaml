@@ -1,0 +1,11 @@
+nameOverride: varnish-ingress
+fullnameOverride: varnish-ingress
+vikingService:
+
+  ## Name of the ingress class to route through this controller
+  ##
+  ingressClass: varnish
+
+  # labels to add to the pod container metadata
+  podLabels:
+    app: varnish-ingress

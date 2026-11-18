@@ -1,0 +1,12 @@
+category,comparable_manifests,authors_expected,our_reproduction,difference,absolute_difference
+Absent Resource Limit,1990,79,79,0,0
+Absent securityContext,1990,83,83,0,0
+Activation of hostIPC,1990,1,1,0,0
+Activation of hostNetwork,1990,14,14,0,0
+Activation of hostPID,1990,5,5,0,0
+Capability Misuse,1990,20,20,0,0
+Docker Socket Mounting,1990,4,4,0,0
+Escalated Privileges for Child Container Processes,1990,3,3,0,0
+Hard-coded Secret,1990,211,164,-47,47
+Insecure HTTP,1990,606,640,34,34
+Privileged securityContext,1990,9,9,0,0

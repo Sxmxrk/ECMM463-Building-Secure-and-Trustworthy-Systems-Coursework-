@@ -1,0 +1,19 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: cafe-ingress-varnish
+  annotations:
+    kubernetes.io/ingress.class: "varnish"
+spec:
+  rules:
+  - host: cafe.example.com
+    http:
+      paths:
+      - path: /tea
+        backend:
+          serviceName: tea-external-svc
+          servicePort: 81
+      - path: /coffee
+        backend:
+          serviceName: coffee-external-svc
+          servicePort: 80

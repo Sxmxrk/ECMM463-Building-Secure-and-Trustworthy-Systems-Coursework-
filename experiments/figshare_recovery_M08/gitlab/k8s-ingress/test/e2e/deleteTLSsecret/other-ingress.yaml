@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: other-ingress
+spec:
+  tls:
+  - hosts:
+    - other.example.com
+    secretName: other-tls-secret
+  rules:
+  - host: other.example.com
+    http:
+      paths:
+      - path: /this
+        backend:
+          serviceName: this-svc
+          servicePort: 80
+      - path: /that
+        backend:
+          serviceName: that-svc
+          servicePort: 80

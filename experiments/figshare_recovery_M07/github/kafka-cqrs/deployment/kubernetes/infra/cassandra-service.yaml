@@ -1,0 +1,52 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: cassandra-service
+  labels:
+    app: kafka-cqrs
+spec:
+  type: LoadBalancer
+  selector:
+    app: kafka-cqrs
+    service: cassandra-service
+  ports:
+  - name: cassandra-service-port
+    protocol: TCP
+    port: 9042
+    targetPort: 9042
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: kafka-cqrs-cassandra-service
+  labels:
+    app: kafka-cqrs
+    service: cassandra-service
+spec:
+  serviceName: cassandra-service
+  selector:
+    matchLabels:
+      app: kafka-cqrs
+      service: cassandra-service
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: kafka-cqrs
+        service: cassandra-service
+    spec:
+      containers:
+      - name: kafka-service
+        image: library/cassandra:3.11.6
+        ports:
+          - containerPort: 9042
+        env:
+          - name: CASSANDRA_ENDPOINT_SNITCH
+            value: "GossipingPropertyFileSnitch"
+          - name: CASSANDRA_DC
+            value: datacenter1
+        readinessProbe:
+          tcpSocket:
+            port: 9042
+          initialDelaySeconds: 1
+          periodSeconds: 1

@@ -1,0 +1,13 @@
+apps:
+  tea:
+    image: nginxdemos/hello:plain-text
+    replicas: 3
+
+ingress:
+  name: tea-ingress
+  rules:
+  - host: tea.example.com
+    paths:
+    - app: tea
+
+vikingAdmSvc: varnish-tea-admin

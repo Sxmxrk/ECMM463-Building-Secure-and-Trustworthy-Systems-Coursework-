@@ -1,0 +1,7 @@
+path,status,commit,date,authors_size,lines,detail
+Microservices-Nodejs-React/GitTix/infra/k8s/tickets-depl.yaml,SIZE_MATCH,3299f6f3aa31a58096c66eecf17baf90029179f6,2025-07-08,50,50,git_blob=38e7fc179f00133d1f04af1bbc5f7023137d282c
+RSO/kubernetes/payment/payment-deployment.yaml,SIZE_MATCH,5833d6faf0108e0c7bb95c9ba7066c29f4e487b4,2019-06-04,29,29,git_blob=0a11f17b15afe2a560af7c529d50ceac44a3448e
+kubernetes-native-testbed/manifests/infra/harbor/harbor.yaml,SIZE_MATCH,572cce426f12290b097b7ab7ebf74dd87f6df3d8,2020-07-15,1422,1422,git_blob=d0ee2a0e9b90e25288e8f2887439466e9984f954
+microservices-deploy/scripts_minikube/deploy.yml,SIZE_MATCH,6277c229bc58fc75f25108c1c3673a6e3aab5901,2021-08-03,150,150,git_blob=5d5be1ab12e381434605c7fac3501504d3c64b8b
+microservices-dotnetcore-docker-sf-k8s/deploy/k8s/local/invoice/invoice-deployment.yaml,SIZE_MATCH,125a43cf13e6f4ea5a116c9ce3d293ff73ce1ccb,2020-04-19,43,43,git_blob=7c401631632150c9a22e14507a71b98da1120585
+netcore-microservices/deployment/aks/examples/ingress-controller/test-ingress.yaml,SIZE_MATCH,5684a1e63b8ea158ea9343d7b7e2e6a02db5f7a5,2023-10-28,47,47,git_blob=a9b385ea392dfe17d84fcc8d894f1daa6107ee75

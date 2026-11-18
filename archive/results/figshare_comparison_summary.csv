@@ -1,0 +1,12 @@
+category,comparable_manifests,authors_expected,our_reproduction,difference,absolute_difference
+Absent Resource Limit,1355,19,19,0,0
+Absent securityContext,1355,15,15,0,0
+Activation of hostIPC,1355,0,0,0,0
+Activation of hostNetwork,1355,6,6,0,0
+Activation of hostPID,1355,4,4,0,0
+Capability Misuse,1355,0,0,0,0
+Docker Socket Mounting,1355,1,1,0,0
+Escalated Privileges for Child Container Processes,1355,3,3,0,0
+Hard-coded Secret,1355,111,76,-35,35
+Insecure HTTP,1355,379,413,34,34
+Privileged securityContext,1355,0,0,0,0

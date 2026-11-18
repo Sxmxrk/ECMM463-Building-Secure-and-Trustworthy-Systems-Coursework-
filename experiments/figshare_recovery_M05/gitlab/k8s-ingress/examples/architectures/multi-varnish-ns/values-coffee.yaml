@@ -1,0 +1,13 @@
+apps:
+  coffee:
+    image: nginxdemos/hello:plain-text
+    replicas: 2
+
+ingress:
+  name: coffee-ingress
+  rules:
+  - host: coffee.example.com
+    paths:
+    - app: coffee
+
+vikingAdmSvc: varnish-coffee-admin

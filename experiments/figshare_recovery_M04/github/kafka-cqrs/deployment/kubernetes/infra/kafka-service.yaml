@@ -1,0 +1,78 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: kafka-service
+  labels:
+    app: kafka-cqrs
+spec:
+  type: LoadBalancer
+  selector:
+    app: kafka-cqrs
+    service: kafka-service
+  ports:
+  - name: kafka-service-port
+    protocol: TCP
+    port: 9092
+    targetPort: 9092
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: kafka-cqrs-kafka-service
+  labels:
+    app: kafka-cqrs
+    service: kafka-service
+spec:
+  serviceName: kafka-service
+  selector:
+    matchLabels:
+      app: kafka-cqrs
+      service: kafka-service
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: kafka-cqrs
+        service: kafka-service
+    spec:
+      initContainers:
+      - name: wait-for-zookeeper
+        image: busybox:1.32.0
+        command: ['sh', '-c', "until nc -z zookeeper-service:2181; do echo Waiting for zookeeper; sleep 1; done; echo OK"]
+      containers:
+      - name: kafka-service
+        image: bitnami/kafka:2.5.0-debian-10-r78
+        ports:
+          - containerPort: 9092
+        env:
+          - name: MY_POD_NAMESPACE
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.namespace
+          - name: MY_POD_SERVICENAME
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.labels['service']
+          - name: MY_POD_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+          - name: BROKER_ID_COMMAND
+            value: "hostname | awk -F '-' '{print $NF}'"
+          - name: KAFKA_CFG_ZOOKEEPER_CONNECT
+            value: zookeeper-service:2181
+          - name: ALLOW_PLAINTEXT_LISTENER
+            value: "yes"
+          - name: KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP
+            value: CLIENT:PLAINTEXT
+          - name: KAFKA_CFG_LISTENERS
+            value: CLIENT://:9092
+          - name: KAFKA_CFG_ADVERTISED_LISTENERS
+            value: CLIENT://$(MY_POD_NAME).$(MY_POD_SERVICENAME).$(MY_POD_NAMESPACE).svc.cluster.local:9092
+          - name: KAFKA_INTER_BROKER_LISTENER_NAME
+            value: CLIENT
+        readinessProbe:
+          tcpSocket:
+            port: 9092
+          initialDelaySeconds: 1
+          periodSeconds: 1

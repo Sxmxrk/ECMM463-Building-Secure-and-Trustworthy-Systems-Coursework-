@@ -1,0 +1,33 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: kafka-cqrs-ingress
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/rewrite-target: $1
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      rewrite ^/gui$ /gui/ permanent;
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /gui(.*)
+        backend:
+          serviceName: gui-service
+          servicePort: 80
+      - path: /notifier(.*)
+        backend:
+          serviceName: notifier-service
+          servicePort: 8081
+      - path: /reader(.*)
+        backend:
+          serviceName: reader-service
+          servicePort: 8082
+      - path: /producer(.*)
+        backend:
+          serviceName: producer-service
+          servicePort: 8083
+      - path: /debugger(.*)
+        backend:
+          serviceName: debugger-service
+          servicePort: 9090

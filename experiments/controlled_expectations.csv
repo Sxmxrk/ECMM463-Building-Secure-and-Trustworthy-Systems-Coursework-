@@ -1,0 +1,26 @@
+file,paper_category,csv_column,expected_count,rationale
+01-resource-limit-insecure.yaml,Absent Resource Limit,NO_RESO,1,Omitting limits in a Pod should trigger SLIKUBE_01.
+01-resource-limit-fixed.yaml,Absent Resource Limit,NO_RESO,0,Limits are present.
+02-security-context-insecure.yaml,Absent securityContext,NO_SECU_CONTEXT,1,Pod has containers but no securityContext.
+02-security-context-fixed.yaml,Absent securityContext,NO_SECU_CONTEXT,0,Container securityContext is present.
+03-hostipc-insecure.yaml,Activation of hostIPC,TRUE_HOST_IPC,1,hostIPC:true.
+03-hostipc-fixed.yaml,Activation of hostIPC,TRUE_HOST_IPC,0,hostIPC:false.
+04-hostnetwork-insecure.yaml,Activation of hostNetwork,TRUE_HOST_NET,1,hostNetwork:true.
+04-hostnetwork-fixed.yaml,Activation of hostNetwork,TRUE_HOST_NET,0,hostNetwork:false.
+05-hostpid-insecure.yaml,Activation of hostPID,TRUE_HOST_PID,1,hostPID:true.
+05-hostpid-fixed.yaml,Activation of hostPID,TRUE_HOST_PID,0,hostPID:false.
+06-capability-insecure.yaml,Capability Misuse,CAP_SYS_ADMIN,1,CAP_SYS_ADMIN is added.
+06-capability-fixed.yaml,Capability Misuse,CAP_SYS_ADMIN,0,No dangerous capability is added.
+07-docker-socket-insecure.yaml,Docker Socket Mounting,DOCKERSOCK_PATH,1,hostPath is /var/run/docker.sock.
+07-docker-socket-fixed.yaml,Docker Socket Mounting,DOCKERSOCK_PATH,0,Different hostPath.
+08-privilege-escalation-insecure.yaml,Escalated Privilege for Child Container Processes,ALLOW_PRIVI,1,allowPrivilegeEscalation:true.
+08-privilege-escalation-fixed.yaml,Escalated Privilege for Child Container Processes,ALLOW_PRIVI,0,allowPrivilegeEscalation:false.
+09-hardcoded-secret-insecure.yaml,Hard-coded Secret,WITHIN_MANIFEST_SECRET,2,Username and password are hard-coded.
+09-hardcoded-secret-fixed.yaml,Hard-coded Secret,WITHIN_MANIFEST_SECRET,0,Secret is referenced through secretKeyRef.
+10-http-insecure.yaml,Insecure HTTP,INSECURE_HTTP,1,http:// value occurs in manifest containing spec.
+10-http-fixed.yaml,Insecure HTTP,INSECURE_HTTP,0,https:// is used.
+11-privileged-insecure.yaml,Privileged securityContext,SEC_CONT_OVER_PRIVIL,1,privileged:true is under container securityContext.
+11-privileged-fixed.yaml,Privileged securityContext,SEC_CONT_OVER_PRIVIL,0,privileged:false.
+12-secret-fp-candidate.yaml,Hard-coded Secret (false-positive candidate),WITHIN_MANIFEST_SECRET,1,Paper reports pattern-matching false positives such as user_data; candidate should be inspected manually.
+13-http-fp-candidate.yaml,Insecure HTTP (false-positive candidate),INSECURE_HTTP,1,"Current scanner checks any string containing http:// if spec exists, even metadata annotations."
+14-privileged-edgecase-other-true.yaml,Privileged securityContext (edge case),SEC_CONT_OVER_PRIVIL,-1,Do not pre-label pass/fail: current keyMiner(True) may bind to runAsNonRoot:true before privileged:true; use this to test a possible false negative.
